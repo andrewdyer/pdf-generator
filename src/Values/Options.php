@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf\Values;
+namespace AndrewDyer\PdfGenerator\Values;
 
-use AndrewDyer\Pdf\Enums\Orientation;
-use AndrewDyer\Pdf\Enums\PaperSize;
+use AndrewDyer\PdfGenerator\Enums\Orientation;
+use AndrewDyer\PdfGenerator\Enums\PaperSize;
 
 /**
  * Carries the configuration options for a PDF document.

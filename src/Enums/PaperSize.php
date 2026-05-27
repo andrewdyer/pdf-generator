@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf\Enums;
+namespace AndrewDyer\PdfGenerator\Enums;
 
 /**
  * Defines the available paper sizes for a PDF document.

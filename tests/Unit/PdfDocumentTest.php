@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf\Tests\Unit;
+namespace AndrewDyer\PdfGenerator\Tests\Unit;
 
-use AndrewDyer\Pdf\Tests\Support\Documents\ExamplePdfDocument;
+use AndrewDyer\PdfGenerator\Tests\Support\Documents\ExamplePdfDocument;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf\Tests\Support\Documents;
+namespace AndrewDyer\PdfGenerator\Tests\Support\Documents;
 
-use AndrewDyer\Pdf\PdfDocument;
-use AndrewDyer\Pdf\Values\Content;
-use AndrewDyer\Pdf\Values\Options;
+use AndrewDyer\PdfGenerator\PdfDocument;
+use AndrewDyer\PdfGenerator\Values\Content;
+use AndrewDyer\PdfGenerator\Values\Options;
 
 /**
  * Provides a concrete PdfDocument implementation for use in tests.

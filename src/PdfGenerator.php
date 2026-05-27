@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf;
+namespace AndrewDyer\PdfGenerator;
 
-use AndrewDyer\Pdf\Contracts\DriverInterface;
-use AndrewDyer\Pdf\Contracts\PdfDocumentInterface;
+use AndrewDyer\PdfGenerator\Contracts\DriverInterface;
+use AndrewDyer\PdfGenerator\Contracts\PdfDocumentInterface;
 use RuntimeException;
 use Twig\Environment;
 

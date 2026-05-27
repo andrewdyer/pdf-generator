@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf\Values;
+namespace AndrewDyer\PdfGenerator\Values;
 
 /**
  * Carries the content data required to render a PDF document.

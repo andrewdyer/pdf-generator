@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf\Drivers;
+namespace AndrewDyer\PdfGenerator\Drivers;
 
-use AndrewDyer\Pdf\Contracts\DriverInterface;
-use AndrewDyer\Pdf\Values\Options;
+use AndrewDyer\PdfGenerator\Contracts\DriverInterface;
+use AndrewDyer\PdfGenerator\Values\Options;
 use Dompdf\Dompdf;
 use Dompdf\Options as DompdfOptions;
 

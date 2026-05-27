@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf;
+namespace AndrewDyer\PdfGenerator;
 
-use AndrewDyer\Pdf\Contracts\PdfDocumentInterface;
-use AndrewDyer\Pdf\Values\Content;
-use AndrewDyer\Pdf\Values\Options;
+use AndrewDyer\PdfGenerator\Contracts\PdfDocumentInterface;
+use AndrewDyer\PdfGenerator\Values\Content;
+use AndrewDyer\PdfGenerator\Values\Options;
 
 /**
  * Provides a base implementation for a PDF document.

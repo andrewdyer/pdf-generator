@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf\Tests\Unit\Drivers;
+namespace AndrewDyer\PdfGenerator\Tests\Unit\Drivers;
 
-use AndrewDyer\Pdf\Contracts\DriverInterface;
-use AndrewDyer\Pdf\Drivers\DompdfDriver;
-use AndrewDyer\Pdf\Enums\Orientation;
-use AndrewDyer\Pdf\Enums\PaperSize;
-use AndrewDyer\Pdf\Values\Options;
+use AndrewDyer\PdfGenerator\Contracts\DriverInterface;
+use AndrewDyer\PdfGenerator\Drivers\DompdfDriver;
+use AndrewDyer\PdfGenerator\Enums\Orientation;
+use AndrewDyer\PdfGenerator\Enums\PaperSize;
+use AndrewDyer\PdfGenerator\Values\Options;
 use PHPUnit\Framework\TestCase;
 
 /**

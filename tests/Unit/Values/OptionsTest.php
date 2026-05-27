@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf\Tests\Unit\Values;
+namespace AndrewDyer\PdfGenerator\Tests\Unit\Values;
 
-use AndrewDyer\Pdf\Enums\Orientation;
-use AndrewDyer\Pdf\Enums\PaperSize;
-use AndrewDyer\Pdf\Values\Options;
+use AndrewDyer\PdfGenerator\Enums\Orientation;
+use AndrewDyer\PdfGenerator\Enums\PaperSize;
+use AndrewDyer\PdfGenerator\Values\Options;
 use PHPUnit\Framework\TestCase;
 
 /**

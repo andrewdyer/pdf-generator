@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AndrewDyer\Pdf\Contracts;
+namespace AndrewDyer\PdfGenerator\Contracts;
 
-use AndrewDyer\Pdf\Values\Options;
+use AndrewDyer\PdfGenerator\Values\Options;
 
 /**
  * Defines the contract for a PDF generation driver.
