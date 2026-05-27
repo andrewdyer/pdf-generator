@@ -1,5 +1,5 @@
 {
-  "name": "your-vendor/your-package",
+  "name": "andrewdyer/pdf-generator",
   "description": "",
   "type": "library",
   "autoload": {
