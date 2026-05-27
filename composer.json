@@ -2,6 +2,7 @@
   "name": "andrewdyer/pdf-generator",
   "description": "A framework-agnostic PHP library for generating PDFs from Twig templates, with support for a swappable driver interface",
   "type": "library",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "AndrewDyer\\PdfGenerator\\": "src/"
