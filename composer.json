@@ -4,12 +4,12 @@
   "type": "library",
   "autoload": {
     "psr-4": {
-      "YourVendor\\YourPackage\\": "src/"
+      "AndrewDyer\\Pdf\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "YourVendor\\YourPackage\\Tests\\": "tests/"
+      "AndrewDyer\\Pdf\\Tests\\": "tests/"
     }
   },
   "require": {
