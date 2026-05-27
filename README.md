@@ -4,7 +4,7 @@ A framework-agnostic PHP library for generating PDFs from Twig templates, with s
 
 ## Introduction
 
-This library provides a PDF generation pipeline for PHP applications, converting Twig templates to PDF documents through an extensible driver interface. Dompdf, Browsershot, and Gotenberg drivers are included, with support for custom drivers via a simple contract.
+This library provides a PDF generation pipeline for PHP applications, converting Twig templates to PDF documents through an extensible driver interface. Dompdf and Browsershot drivers are included, with support for custom drivers via a simple contract.
 
 ## Prerequisites
 
