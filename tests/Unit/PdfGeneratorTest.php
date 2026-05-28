@@ -98,4 +98,39 @@ final class PdfGeneratorTest extends TestCase
             rmdir($unwritable);
         }
     }
+
+    /**
+     * Asserts that sanitiseFilename strips CR, LF, null bytes, and double quotes.
+     *
+     * @dataProvider sanitiseFilenameProvider
+     */
+    public function testSanitiseFilename(string $input, string $expected): void
+    {
+        $twig = $this->createMock(Environment::class);
+        $driver = $this->createMock(DriverInterface::class);
+
+        $generator = new PdfGenerator($twig, $driver);
+
+        $reflection = new \ReflectionMethod($generator, 'sanitiseFilename');
+        $result = $reflection->invoke($generator, $input);
+
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * Provides filenames and their expected sanitised values.
+     *
+     * @return array<string, array{string, string}>
+     */
+    public static function sanitiseFilenameProvider(): array
+    {
+        return [
+            'clean filename' => ['invoice-001.pdf', 'invoice-001.pdf'],
+            'double quotes stripped' => ['"invoice".pdf', 'invoice.pdf'],
+            'CR stripped' => ["invoice\r.pdf", 'invoice.pdf'],
+            'LF stripped' => ["invoice\n.pdf", 'invoice.pdf'],
+            'null byte stripped' => ["invoice\x00.pdf", 'invoice.pdf'],
+            'header injection' => ["foo\r\nX-Injected: bar", 'fooX-Injected: bar'],
+        ];
+    }
 }

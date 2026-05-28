@@ -49,10 +49,10 @@ final readonly class PdfGenerator
     public function inline(PdfDocumentInterface $document): never
     {
         $bytes = $this->generate($document);
-        $filename = $document->options()->filename;
+        $filename = $this->sanitiseFilename($document->options()->filename);
 
         header('Content-Type: application/pdf');
-        header(sprintf('Content-Disposition: inline; filename="%s"', $filename));
+        header(sprintf("Content-Disposition: inline; filename=\"%s\"; filename*=UTF-8''%s", $filename, rawurlencode($filename)));
         header('Content-Length: ' . strlen($bytes));
         header('Cache-Control: private, max-age=0, must-revalidate');
 
@@ -68,10 +68,10 @@ final readonly class PdfGenerator
     public function download(PdfDocumentInterface $document): never
     {
         $bytes = $this->generate($document);
-        $filename = $document->options()->filename;
+        $filename = $this->sanitiseFilename($document->options()->filename);
 
         header('Content-Type: application/pdf');
-        header(sprintf('Content-Disposition: attachment; filename="%s"', $filename));
+        header(sprintf("Content-Disposition: attachment; filename=\"%s\"; filename*=UTF-8''%s", $filename, rawurlencode($filename)));
         header('Content-Length: ' . strlen($bytes));
         header('Cache-Control: private, max-age=0, must-revalidate');
 
@@ -86,6 +86,7 @@ final readonly class PdfGenerator
      * @param string $directory The directory to save the file in.
      * @return string The full path to the saved file.
      * @throws RuntimeException When the directory does not exist or is not writable.
+     * @throws RuntimeException When the file cannot be written.
      */
     public function save(PdfDocumentInterface $document, string $directory): string
     {
@@ -107,5 +108,20 @@ final readonly class PdfGenerator
         }
 
         return $path;
+    }
+
+    /**
+     * Strips control characters and quotes from a filename to prevent header injection.
+     *
+     * @param string $filename The filename to sanitise.
+     * @return string The sanitised filename.
+     */
+    private function sanitiseFilename(string $filename): string
+    {
+        // Strip CR, LF, and null bytes to prevent header injection.
+        $filename = preg_replace('/[\r\n\x00]/', '', $filename);
+
+        // Strip double quotes to prevent breaking the quoted filename parameter.
+        return str_replace('"', '', $filename);
     }
 }
