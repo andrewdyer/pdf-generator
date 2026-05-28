@@ -1,3 +1,5 @@
+![PDF Generator](http://public-assets.andrewdyer.rocks/images/covers/pdf-generator.png)
+
 # PDF Generator
 
 A framework-agnostic PHP library for generating PDFs from Twig templates, with support for a swappable driver interface.
