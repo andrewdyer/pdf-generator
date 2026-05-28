@@ -73,5 +73,4 @@ final class OptionsTest extends TestCase
 
         $this->assertSame(Orientation::Landscape, $options->orientation);
     }
-
 }
