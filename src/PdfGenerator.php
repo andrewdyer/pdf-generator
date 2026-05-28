@@ -1,0 +1,127 @@
+<?php
+
+declare(strict_types=1);
+
+namespace AndrewDyer\PdfGenerator;
+
+use AndrewDyer\PdfGenerator\Contracts\DriverInterface;
+use AndrewDyer\PdfGenerator\Contracts\PdfDocumentInterface;
+use RuntimeException;
+use Twig\Environment;
+
+/**
+ * Handles PDF generation, inline serving, downloading, and saving.
+ */
+final readonly class PdfGenerator
+{
+    /**
+     * Creates a new PdfGenerator with the required dependencies.
+     *
+     * @param Environment $twig The Twig environment for rendering HTML templates.
+     * @param DriverInterface $driver The PDF generation driver.
+     */
+    public function __construct(
+        private Environment $twig,
+        private DriverInterface $driver,
+    ) {
+    }
+
+    /**
+     * Generates a PDF from the given document and returns its contents.
+     *
+     * @param PdfDocumentInterface $document The PDF document to generate.
+     * @return string The generated PDF contents.
+     */
+    public function generate(PdfDocumentInterface $document): string
+    {
+        $content = $document->content();
+
+        $html = $this->twig->render($content->view, $content->data);
+
+        return $this->driver->generate($html, $document->options());
+    }
+
+    /**
+     * Handles sending the PDF as an inline browser response.
+     *
+     * @param PdfDocumentInterface $document The PDF document to serve inline.
+     */
+    public function inline(PdfDocumentInterface $document): never
+    {
+        $bytes = $this->generate($document);
+        $filename = $this->sanitiseFilename($document->options()->filename);
+
+        header('Content-Type: application/pdf');
+        header(sprintf("Content-Disposition: inline; filename=\"%s\"; filename*=UTF-8''%s", $filename, rawurlencode($filename)));
+        header('Content-Length: ' . strlen($bytes));
+        header('Cache-Control: private, max-age=0, must-revalidate');
+
+        echo $bytes;
+        exit;
+    }
+
+    /**
+     * Handles sending the PDF as a file download response.
+     *
+     * @param PdfDocumentInterface $document The PDF document to download.
+     */
+    public function download(PdfDocumentInterface $document): never
+    {
+        $bytes = $this->generate($document);
+        $filename = $this->sanitiseFilename($document->options()->filename);
+
+        header('Content-Type: application/pdf');
+        header(sprintf("Content-Disposition: attachment; filename=\"%s\"; filename*=UTF-8''%s", $filename, rawurlencode($filename)));
+        header('Content-Length: ' . strlen($bytes));
+        header('Cache-Control: private, max-age=0, must-revalidate');
+
+        echo $bytes;
+        exit;
+    }
+
+    /**
+     * Saves the PDF to the given directory and returns the full file path.
+     *
+     * @param PdfDocumentInterface $document The PDF document to save.
+     * @param string $directory The directory to save the file in.
+     * @return string The full path to the saved file.
+     * @throws RuntimeException When the directory does not exist or is not writable.
+     * @throws RuntimeException When the file cannot be written.
+     */
+    public function save(PdfDocumentInterface $document, string $directory): string
+    {
+        $directory = rtrim($directory, '/\\');
+
+        if (!is_dir($directory) || !is_writable($directory)) {
+            throw new RuntimeException(
+                sprintf('Directory "%s" does not exist or is not writable.', $directory),
+            );
+        }
+
+        $bytes = $this->generate($document);
+        $path = $directory . DIRECTORY_SEPARATOR . $document->options()->filename;
+
+        if (file_put_contents($path, $bytes) === false) {
+            throw new RuntimeException(
+                sprintf('Failed to write PDF to "%s".', $path),
+            );
+        }
+
+        return $path;
+    }
+
+    /**
+     * Strips control characters and quotes from a filename to prevent header injection.
+     *
+     * @param string $filename The filename to sanitise.
+     * @return string The sanitised filename.
+     */
+    private function sanitiseFilename(string $filename): string
+    {
+        // Strip CR, LF, and null bytes to prevent header injection.
+        $filename = preg_replace('/[\r\n\x00]/', '', $filename);
+
+        // Strip double quotes to prevent breaking the quoted filename parameter.
+        return str_replace('"', '', $filename);
+    }
+}

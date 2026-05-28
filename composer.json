@@ -1,23 +1,31 @@
 {
-  "name": "your-vendor/your-package",
-  "description": "",
+  "name": "andrewdyer/pdf-generator",
+  "description": "A framework-agnostic PHP library for generating PDFs from Twig templates, with support for a swappable driver interface",
   "type": "library",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
-      "YourVendor\\YourPackage\\": "src/"
+      "AndrewDyer\\PdfGenerator\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "YourVendor\\YourPackage\\Tests\\": "tests/"
+      "AndrewDyer\\PdfGenerator\\Tests\\": "tests/"
     }
   },
   "require": {
-    "php": "^8.3"
+    "php": "^8.3",
+    "twig/twig": "^3.27"
   },
   "require-dev": {
+    "dompdf/dompdf": "^3.1",
     "friendsofphp/php-cs-fixer": "^3.75",
-    "phpunit/phpunit": "^10.5"
+    "phpunit/phpunit": "^10.5",
+    "spatie/browsershot": "^5.4"
+  },
+  "suggest": {
+    "dompdf/dompdf": "Required to use DompdfDriver (^3.1)",
+    "spatie/browsershot": "Required to use BrowsershotDriver (^5.4). Also requires Node.js and Puppeteer."
   },
   "scripts": {
     "cs": "php-cs-fixer fix",
