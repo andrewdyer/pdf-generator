@@ -11,6 +11,18 @@
   ],
   "type": "library",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Andrew Dyer",
+      "homepage": "https://andrewdyer.rocks",
+      "role": "Developer"
+    }
+  ],
+  "homepage": "https://github.com/andrewdyer/pdf-generator",
+  "support": {
+    "issues": "https://github.com/andrewdyer/pdf-generator/issues",
+    "source": "https://github.com/andrewdyer/pdf-generator"
+  },
   "autoload": {
     "psr-4": {
       "AndrewDyer\\PdfGenerator\\": "src/"
