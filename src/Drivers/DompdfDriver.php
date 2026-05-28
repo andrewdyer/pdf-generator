@@ -12,7 +12,7 @@ use Dompdf\Options as DompdfOptions;
 /**
  * Generates PDF documents using the Dompdf library.
  */
-final readonly class DompdfDriver implements DriverInterface
+final class DompdfDriver implements DriverInterface
 {
     /**
      * Creates a new DompdfDriver with the required dependencies.
@@ -20,8 +20,11 @@ final readonly class DompdfDriver implements DriverInterface
      * @param DompdfOptions $options The Dompdf options instance.
      */
     public function __construct(
-        private DompdfOptions $options = new DompdfOptions(),
+        private readonly DompdfOptions $options = new DompdfOptions(),
     ) {
+        $this->options->set('defaultFont', 'sans-serif');
+        $this->options->set('isHtml5ParserEnabled', true);
+        $this->options->set('isRemoteEnabled', true);
     }
 
     /**
@@ -33,10 +36,6 @@ final readonly class DompdfDriver implements DriverInterface
      */
     public function generate(string $html, Options $options): string
     {
-        $this->options->set('defaultFont', 'sans-serif');
-        $this->options->set('isHtml5ParserEnabled', true);
-        $this->options->set('isRemoteEnabled', true);
-
         $dompdf = new Dompdf($this->options);
         $dompdf->loadHtml($html);
         $dompdf->setPaper(
