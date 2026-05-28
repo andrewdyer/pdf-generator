@@ -19,6 +19,7 @@ This library provides a PDF generation pipeline for PHP applications, converting
 
 - **[PHP](https://www.php.net/)**: Version 8.3 or higher is required.
 - **[Composer](https://getcomposer.org/)**: Dependency management tool for PHP.
+- **[Twig](https://twig.symfony.com/)**: Version ^3.27 is required.
 
 ## Installation
 
