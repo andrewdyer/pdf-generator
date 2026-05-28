@@ -34,10 +34,9 @@ final readonly class PdfGenerator
      */
     public function generate(PdfDocumentInterface $document): string
     {
-        $html = $this->twig->render(
-            $document->content()->view,
-            $document->content()->data
-        );
+        $content = $document->content();
+
+        $html = $this->twig->render($content->view, $content->data);
 
         return $this->driver->generate($html, $document->options());
     }
