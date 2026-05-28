@@ -74,4 +74,28 @@ final class PdfGeneratorTest extends TestCase
 
         (new PdfGenerator($twig, $driver))->save(new ExamplePdfDocument(), '/non/existent/directory');
     }
+
+    /**
+     * Asserts that save throws RuntimeException when the file cannot be written.
+     */
+    public function testSaveThrowsWhenFileCannotBeWritten(): void
+    {
+        $directory = sys_get_temp_dir();
+
+        $twig = $this->createMock(Environment::class);
+        $twig->method('render')->willReturn('<p>Hello, world</p>');
+
+        $driver = $this->createMock(DriverInterface::class);
+        $driver->method('generate')->willReturn('%PDF-content');
+
+        $unwritable = $directory . DIRECTORY_SEPARATOR . uniqid('pdf_test_', true);
+        mkdir($unwritable, 0444);
+
+        try {
+            $this->expectException(RuntimeException::class);
+            (new PdfGenerator($twig, $driver))->save(new ExamplePdfDocument(), $unwritable);
+        } finally {
+            rmdir($unwritable);
+        }
+    }
 }

@@ -101,7 +101,11 @@ final readonly class PdfGenerator
         $bytes = $this->generate($document);
         $path = $directory . DIRECTORY_SEPARATOR . $document->options()->filename;
 
-        file_put_contents($path, $bytes);
+        if (file_put_contents($path, $bytes) === false) {
+            throw new RuntimeException(
+                sprintf('Failed to write PDF to "%s".', $path),
+            );
+        }
 
         return $path;
     }
