@@ -45,16 +45,6 @@ final class OptionsTest extends TestCase
     }
 
     /**
-     * Asserts that Options uses an empty array as the default metadata.
-     */
-    public function testDefaultMetadata(): void
-    {
-        $options = new Options();
-
-        $this->assertSame([], $options->metadata);
-    }
-
-    /**
      * Asserts that Options stores the provided filename.
      */
     public function testCustomFilename(): void
@@ -84,14 +74,4 @@ final class OptionsTest extends TestCase
         $this->assertSame(Orientation::Landscape, $options->orientation);
     }
 
-    /**
-     * Asserts that Options stores the provided metadata.
-     */
-    public function testCustomMetadata(): void
-    {
-        $metadata = ['author' => 'Jane Doe', 'title' => 'Annual Report'];
-        $options = new Options(metadata: $metadata);
-
-        $this->assertSame($metadata, $options->metadata);
-    }
 }

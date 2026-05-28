@@ -210,7 +210,6 @@ new Options(
     filename:    'document.pdf',
     paperSize:   PaperSize::A4,
     orientation: Orientation::Portrait,
-    metadata:    ['Author' => 'Acme Ltd'],
 );
 ```
 
