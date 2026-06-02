@@ -1,15 +1,11 @@
-![PDF Generator](http://public-assets.andrewdyer.rocks/images/covers/pdf-generator.png)
-
-<p align="center">
-  <a href="https://packagist.org/packages/andrewdyer/pdf-generator"><img src="https://poser.pugx.org/andrewdyer/pdf-generator/v/stable?style=for-the-badge" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/andrewdyer/pdf-generator"><img src="https://poser.pugx.org/andrewdyer/pdf-generator/downloads?style=for-the-badge" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/andrewdyer/pdf-generator"><img src="https://poser.pugx.org/andrewdyer/pdf-generator/license?style=for-the-badge" alt="License"></a>
-  <a href="https://packagist.org/packages/andrewdyer/pdf-generator"><img src="https://poser.pugx.org/andrewdyer/pdf-generator/require/php?style=for-the-badge" alt="PHP Version Required"></a>
-</p>
-
 # PDF Generator
 
 A framework-agnostic PHP library for generating PDFs from Twig templates, with support for a swappable driver interface.
+
+[![Latest Stable Version](http://poser.pugx.org/andrewdyer/pdf-generator/v?style=flat-square)](https://packagist.org/packages/andrewdyer/pdf-generator)
+[![Total Downloads](http://poser.pugx.org/andrewdyer/pdf-generator/downloads?style=flat-square)](https://packagist.org/packages/andrewdyer/pdf-generator)
+[![License](http://poser.pugx.org/andrewdyer/pdf-generator/license?style=flat-square)](https://packagist.org/packages/andrewdyer/pdf-generator)
+[![PHP Version Require](http://poser.pugx.org/andrewdyer/pdf-generator/require/php?style=flat-square)](https://packagist.org/packages/andrewdyer/pdf-generator)
 
 ## Introduction
 
