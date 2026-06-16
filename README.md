@@ -1,6 +1,6 @@
 # PDF Generator
 
-A framework-agnostic PHP library for generating PDFs from Twig templates, with support for a swappable driver interface.
+A framework-agnostic library for generating PDFs from Twig templates, with support for a swappable driver interface.
 
 [![Latest Stable Version](http://poser.pugx.org/andrewdyer/pdf-generator/v?style=flat-square)](https://packagist.org/packages/andrewdyer/pdf-generator)
 [![Total Downloads](http://poser.pugx.org/andrewdyer/pdf-generator/downloads?style=flat-square)](https://packagist.org/packages/andrewdyer/pdf-generator)
@@ -9,7 +9,7 @@ A framework-agnostic PHP library for generating PDFs from Twig templates, with s
 
 ## Introduction
 
-This library provides a PDF generation pipeline for PHP applications, converting Twig templates to PDF documents through an extensible driver interface. Dompdf and Browsershot drivers are included, with support for custom drivers via a simple contract.
+This library converts Twig templates into PDF documents through an extensible, swappable driver interface. It includes [Dompdf](https://dompdf.github.io/) and [Browsershot](https://spatie.be/docs/browsershot) driver implementations, with each driver enabled by installing its corresponding dependency. Custom drivers can be introduced by implementing a simple contract, making it straightforward to adapt the generation pipeline to different rendering backends or deployment environments.
 
 ## Prerequisites
 
